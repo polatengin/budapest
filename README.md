@@ -163,7 +163,7 @@ IdleTimeOut.Current.OnTick.subscribe(seconds => {
   console.log(IdleTimeOut.Current);
 
   if (seconds <= 4) {
-    $idle_time.innerText = 'everthing is fine! 😀';
+    $idle_time.innerText = 'everything is fine! 😀';
   } else if (seconds > 20) {
     document.location.href = '/logout';
   } else {
