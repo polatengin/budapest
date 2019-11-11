@@ -1,0 +1,39 @@
+on: push
+name: Build and Publish
+jobs:
+  npmInstallDependencies:
+    name: npm install dependencies
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - name: npm install dependencies
+      uses: actions/npm@master
+      with:
+        args: install
+
+    - name: npm run build
+      uses: actions/npm@master
+      with:
+        args: run build:dev
+
+    - name: docker build
+      uses: actions/docker/cli@master
+      with:
+        args: build -f DockerFile -t budapest:latest .
+
+    - name: docker tag
+      uses: actions/docker/tag@master
+      with:
+        args: budapest:latest polatengin/budapest
+
+    - name: docker login
+      uses: actions/docker/login@master
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+
+    - name: docker publish
+      uses: actions/docker/cli@master
+      with:
+        args: push polatengin/budapest
