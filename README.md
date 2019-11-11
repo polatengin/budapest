@@ -4,7 +4,7 @@
 
 # Determine idle time in WepApps
 
-You can use the running version of this project at [https://polatengin-madrid.netlify.com/](https://polatengin-madrid.netlify.com/)
+You can use the running version of this project at [https://polatengin-budapest.netlify.com/](https://polatengin-budapest.netlify.com/)
 
 # What is idle timeout
 
